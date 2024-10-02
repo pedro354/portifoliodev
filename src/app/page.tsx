@@ -9,7 +9,7 @@ export default function Home() {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
 
-  async function sendEmail(ev){
+  async function sendEmail(ev: { preventDefault: () => void; }){
     ev.preventDefault()
 
     alert('send email')
