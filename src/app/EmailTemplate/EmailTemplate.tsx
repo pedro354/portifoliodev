@@ -13,12 +13,13 @@ import {
   interface VercelInviteUserEmailProps {
     name?: string;
     previewText?: string;
+    email?: string;
   }
   
-  export const WelcomeDevs = ({
+  export const EmailTemplate: React.FC<VercelInviteUserEmailProps> = ({
     name ="",
     previewText = ""
-  }: VercelInviteUserEmailProps) => {
+  }) => {
     return (
       <Html>
         <Head />
@@ -27,12 +28,13 @@ import {
           <Body className="bg-white my-auto mx-auto font-sans px-2">
             <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
               <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
-                Olá
+              Olá {name}
               </Heading>
               <Text className="text-black text-[14px] leading-[24px]">
-                Hello {name},
+                Meu nome é {name},
               </Text>
               <Text className="text-black text-[14px] leading-[24px]">
+                Nova Mensagem: {previewText}
               </Text>
             </Container>
           </Body>
@@ -40,10 +42,4 @@ import {
       </Html>
     );
   };
-  
-  WelcomeDevs.PreviewProps = {
-    name: 'Vercel'
-  } as VercelInviteUserEmailProps;
-  
-  export default WelcomeDevs;
   

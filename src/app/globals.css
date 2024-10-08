@@ -9,6 +9,15 @@
   min-height: 100vh !important;
 }
 
+.lineContainer{
+  width: 1px;
+  background: white;
+  height: 100vh;
+  position: fixed;
+  left: 40em;
+  top: 3em;
+  bottom: 30em;
+}
 .main{
   display: flex;
   flex-direction: column;
@@ -24,6 +33,21 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1em;
 }
+.titleName{
+  height: 2em;
+  font-size: 2em;
+}
+.animate__animated{
+  &.about{
+  animation-delay: 3s;
+  }&.skills{
+    animation-delay: 3.5s;
+  }&.projects{
+    animation-delay: 4s;
+  }&.contact{
+    animation-delay: 4.5s;
+  }
+}
 p{
   font-size: 1.4rem;
 }
@@ -33,6 +57,17 @@ h3 {
 }
 li{
   list-style: none;
+}
+input{
+  display: flex;
+  padding:0.50rem;
+}
+a{
+  text-decoration: none!important;
+}
+.btn.btn-primary {
+  width: 100px;
+  margin: 1em auto;
 }
 .profileLeft{
   position: fixed;
@@ -49,6 +84,7 @@ li{
   position: absolute;
   top: 8em;
   left: 40em;
+  display: flex;
 }
 .svg{
   display: block;
@@ -162,6 +198,10 @@ li{
 }
 .conjuctLeft{
   gap: 1em;
+}
+.description{
+  animation: fadeInUp 1.5s;
+  -webkit-animation: fadeInUp ;
 }
 .conjuctLeft, .titleName, .description{
   padding: 15px 0;

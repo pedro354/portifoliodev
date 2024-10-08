@@ -1,48 +1,72 @@
 "use client"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
-import { Badge, Card, CardFooter, CardImg, Container } from 'reactstrap';
-import React, { useState } from 'react';
-
+import { Badge, Button, Card, CardFooter, CardImg, Container } from 'reactstrap';
+import { FormEvent, useState } from "react";
+import { MaquinaDeEscrever } from './Components/MaquinaDeEscrever';
 export default function Home() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
+  const [name, setName] = useState<string>("")
+  const [email, setEmail] = useState<string>("")
+  const [text, setText] = useState<string>("")
+  const [message, setMessage] = useState<string>("")
 
-  async function sendEmail(ev: { preventDefault: () => void; }){
-    ev.preventDefault()
+  async function formEmail(ev: FormEvent<HTMLFormElement>) {
+    ev.preventDefault();
+    const response = await fetch('/api/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        name, 
+        email, 
+        previewText: text // Altere aqui para usar o estado diretamente
+      })
+    });  
 
-    alert('send email')
+
+    const data = await response.json();
+    if (response.ok) {
+      setMessage("Success")
+    } else {
+      setMessage(`Error ${data.error}`)
+    }
   }
 
   return (
     <main className="main">
       <Container className="content">
         <section className="profileLeft">
-          <h1 className="titleName">Pedro Silva</h1>
-          <h4 className="description">Apaixonado por tecnologia, contruindo sites em responsivos em frontend e aplicações em backend</h4>
+      {/* <LeftContent/> */}
+          <h1 className="titleName"><MaquinaDeEscrever text="Olá! Meu nome é Pedro Silva" /></h1>
+          <h4 className="description  animate__animated animate__fadeInUp animate__delay-3s">Sou apaixonado por tecnologia, contruindo sites em responsivos em frontend e aplicações em backend server-client</h4>
           <section className="conjuctLeft d-flex flex-column">
-
-            <p className="button navLeft">
-              <span className="actual-text ">&nbsp;sobre mim&nbsp;</span>
+            <a href="#sobremim">
+            <p className="button navLeft animate__animated animate__fadeInLeft about">
+              <span className="actual-text">&nbsp;sobre mim&nbsp;</span>
               <span aria-hidden="true" className="hover-text">&nbsp;sobre mim&nbsp;</span>
-
             </p>
-            <p className="button navLeft">
+
+            </a>
+            <a href="#skills">
+            <p className="button navLeft animate__animated animate__fadeInLeft skills ">
               <span className="actual-text">&nbsp;habilidades&nbsp;</span>
               <span aria-hidden="true" className="hover-text">&nbsp;habilidades&nbsp;</span>
-
             </p>
-            <p className="button navLeft">
+
+            </a>
+            <a href="#projects">
+            <p className="button navLeft animate__animated animate__fadeInLeft projects ">
               <span className="actual-text">&nbsp;projetos&nbsp;</span>
               <span aria-hidden="true" className="hover-text">&nbsp;projetos&nbsp;</span>
-
             </p>
-            <p className="button navLeft">
+            </a>
+            <a href="#contact">
+            <p className="button navLeft animate__animated animate__fadeInLeft contact">
               <span className="actual-text">&nbsp;contate-me&nbsp;</span>
               <span aria-hidden="true" className="hover-text">&nbsp;contate-me&nbsp;</span>
-
             </p>
+            </a>
           </section>
           <div className="svg">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-github py-2" viewBox="0 0 16 16">
@@ -56,12 +80,11 @@ export default function Home() {
             </svg>
           </div>
         </section>
-
         <section className="profileRight">
 
           <ul>
             <li>
-              <h3>Sobre Mim</h3>
+              <h3 id="sobremim">Sobre Mim</h3>
               <p className='contentSection'>
                 Dedicando-me à programação há cerca de três anos, resolvi me aprofundar em JavaScript, TypeScript, Node.js, React.js e Next.js, desenvolvendo projetos tanto no front-end quanto no back-end. Meu foco é aperfeiçoar cada código, aplicando estruturas de dados, metodologias ágeis e princípios de código limpo.
 
@@ -69,7 +92,7 @@ export default function Home() {
               </p>
             </li>
             <li>
-              <h3>Minhas Habilidades</h3>
+              <h3 id="skills">Minhas Habilidades</h3>
               <div className="contentSection">
                 <div className="spanBrand">
                   <span className='brand'>Javascript</span>
@@ -88,7 +111,7 @@ export default function Home() {
               </div>
             </li>
             <li>
-              <h3>Projetos</h3>
+              <h3 id="projects">Projetos</h3>
               <div className="contentSection">
                 <div className="spanCard">
                   <Card className="card-container">
@@ -167,22 +190,26 @@ export default function Home() {
               </div>
             </li>
             <li>
-              <h3 className="descr">Contate-me</h3>
+              <h3 className="descr" id="contact">Contate-me</h3>
               <div className="container">
-                <form className="form" onSubmit={sendEmail}>
+                <form className="form" onSubmit={ formEmail }>
                   <div className="input">
-                    <label htmlFor="name">Name: </label>
-                    <input required={ false } type="text" onChange={(ev) => setName(ev.target.value)} value={name} />
+                    <label htmlFor="inputName">Name: </label>
+                    <input required={ false } type="text" onChange={ (ev) => setName(ev.target.value) } value={ name } />
                   </div>
                   <div className="input">
-                    <label htmlFor="email" id="email">E-mail</label>
-                    <input required={ false } name="email" type="text" onChange={(ev) => setEmail(ev.target.value)}value={email}/>
+                    <label htmlFor="inputEmail" id="email">E-mail</label>
+                    <input required={ false } name="email" type="text" onChange={ (ev) => setEmail(ev.target.value) } value={ email } />
                   </div>
                   <div className="input">
-                    <label htmlFor="message">Message: </label>
-                    <textarea required={ false } cols={ 30 } rows={ 5 } id="message" onChange={(ev)=> setMessage(ev.target.value) }value={message}></textarea>
+                    <label htmlFor="inputMessage">Message: </label>
+                    <input type="textarea"
+                      id="inputText"
+                      value={text}
+                      onChange={ (ev) => setText(ev.target.value) }
+                    />
+                    <button type="submit" className="btn btn-primary">Enviar →</button>
                   </div>
-                  <button type="submit" className="">Send message →</button>
                 </form>
               </div>
             </li>
