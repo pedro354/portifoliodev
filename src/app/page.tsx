@@ -1,11 +1,9 @@
 "use client"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css';
-import { Badge, Button, Card, CardFooter, CardImg, Container } from 'reactstrap';
+import { Badge, Card, CardFooter, CardImg, Container } from 'reactstrap';
 import { FormEvent, useState } from "react";
-import { MaquinaDeEscrever } from './Components/MaquinaDeEscrever';
-import { motion } from "framer-motion"
-import Teste from './Components/teste';
+
 export default function Home() {
   const [name, setName] = useState<string>("")
   const [email, setEmail] = useState<string>("")
