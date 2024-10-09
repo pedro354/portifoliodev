@@ -4,6 +4,8 @@ import 'animate.css';
 import { Badge, Button, Card, CardFooter, CardImg, Container } from 'reactstrap';
 import { FormEvent, useState } from "react";
 import { MaquinaDeEscrever } from './Components/MaquinaDeEscrever';
+import { motion } from "framer-motion"
+import Teste from './Components/teste';
 export default function Home() {
   const [name, setName] = useState<string>("")
   const [email, setEmail] = useState<string>("")
@@ -32,14 +34,13 @@ export default function Home() {
       setMessage(`Error ${data.error}`)
     }
   }
-
-  return (
+    return (
     <main className="main">
       <Container className="content">
         <section className="profileLeft">
       {/* <LeftContent/> */}
-          <h1 className="titleName"><MaquinaDeEscrever text="Olá! Meu nome é Pedro Silva" /></h1>
-          <h4 className="description  animate__animated animate__fadeInUp animate__delay-3s">Sou apaixonado por tecnologia, contruindo sites em responsivos em frontend e aplicações em backend server-client</h4>
+          <h1 className="titleName animate__animated animate__fadeInLeft animate__delay-1s">Olá! Meu nome é Pedro Silva</h1>
+          <h4 className="description  animate__animated animate__fadeInLeft animate__delay-2s">Sou apaixonado por tecnologia, contruindo sites em responsivos em frontend e aplicações em backend server-client</h4>
           <section className="conjuctLeft d-flex flex-column">
             <a href="#sobremim">
             <p className="button navLeft animate__animated animate__fadeInLeft about">
@@ -80,10 +81,10 @@ export default function Home() {
             </svg>
           </div>
         </section>
-        <section className="profileRight">
-
-          <ul>
-            <li>
+        
+        <section className="profileRight ">
+          <ul className=''>
+            <li className='animate__animated animate__fadeInRight animate__delay-1s'>
               <h3 id="sobremim">Sobre Mim</h3>
               <p className='contentSection'>
                 Dedicando-me à programação há cerca de três anos, resolvi me aprofundar em JavaScript, TypeScript, Node.js, React.js e Next.js, desenvolvendo projetos tanto no front-end quanto no back-end. Meu foco é aperfeiçoar cada código, aplicando estruturas de dados, metodologias ágeis e princípios de código limpo.
@@ -91,26 +92,26 @@ export default function Home() {
                 Além disso, estou cursando Engenharia de Software, com previsão de conclusão em 2027, para aprimorar minhas habilidades na criação de automações e softwares mais robustos, utilizando Python, C++ e bancos de dados.
               </p>
             </li>
-            <li>
+            <li className='animate__animated animate__fadeInRight animate__delay-2s'>
               <h3 id="skills">Minhas Habilidades</h3>
               <div className="contentSection">
                 <div className="spanBrand">
-                  <span className='brand'>Javascript</span>
-                  <span className='brand'>TypeScript</span>
-                  <span className='brand'>Node.js</span>
-                  <span className='brand'>Next.js</span>
-                  <span className='brand'>React.js</span>
-                  <span className='brand'>Python</span>
-                  <span className='brand'>MongoDB</span>
-                  <span className='brand'>MySQL</span>
-                  <span className='brand'>Tailwind</span>
-                  <span className='brand'>HTML</span>
-                  <span className='brand'>CSS</span>
+                  <span className='brand shadow-pop-br'>Javascript</span>
+                  <span className='brand shadow-pop-br'>TypeScript</span>
+                  <span className='brand shadow-pop-br'>Node.js</span>
+                  <span className='brand shadow-pop-br'>Next.js</span>
+                  <span className='brand shadow-pop-br'>React.js</span>
+                  <span className='brand shadow-pop-br'>Python</span>
+                  <span className='brand shadow-pop-br'>MongoDB</span>
+                  <span className='brand shadow-pop-br'>MySQL</span>
+                  <span className='brand shadow-pop-br'>Tailwind</span>
+                  <span className='brand shadow-pop-br'>HTML</span>
+                  <span className='brand shadow-pop-br'>CSS</span>
 
                 </div>
               </div>
             </li>
-            <li>
+            <li className='animate__animated animate__fadeInRight animate__delay-3s'>
               <h3 id="projects">Projetos</h3>
               <div className="contentSection">
                 <div className="spanCard">
@@ -189,24 +190,25 @@ export default function Home() {
                 </div>
               </div>
             </li>
-            <li>
+            <li className='animate__animated animate__fadeInRight animate__delay-4s'>
               <h3 className="descr" id="contact">Contate-me</h3>
               <div className="container">
                 <form className="form" onSubmit={ formEmail }>
-                  <div className="input">
-                    <label htmlFor="inputName">Name: </label>
-                    <input required={ false } type="text" onChange={ (ev) => setName(ev.target.value) } value={ name } />
+                  <div className="input ">
+                    <label className='absolute left-0 top-1 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-blue-700' htmlFor="inputName">Name: </label>
+                    <input className='border-b border-gray-300 py-1 focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit' required={ false } type="text" onChange={ (ev) => setName(ev.target.value) } value={ name } />
                   </div>
                   <div className="input">
-                    <label htmlFor="inputEmail" id="email">E-mail</label>
-                    <input required={ false } name="email" type="text" onChange={ (ev) => setEmail(ev.target.value) } value={ email } />
+                    <label className='absolute left-0 top-1 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-blue-700' htmlFor="inputEmail" id="email">E-mail</label>
+                    <input className='border-b border-gray-300 py-1 focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit' required={ false } name="email" type="text" onChange={ (ev) => setEmail(ev.target.value) } value={ email } />
                   </div>
                   <div className="input">
-                    <label htmlFor="inputMessage">Message: </label>
+                    <label className='absolute left-0 top-1 cursor-text peer-focus:text-xs peer-focus:-top-4 transition-all peer-focus:text-blue-700' htmlFor="inputMessage">Message: </label>
                     <input type="textarea"
                       id="inputText"
                       value={text}
                       onChange={ (ev) => setText(ev.target.value) }
+                      className='border-b border-gray-300 py-1 focus:border-b-2 focus:border-blue-700 transition-colors focus:outline-none peer bg-inherit'
                     />
                     <button type="submit" className="btn btn-primary">Enviar →</button>
                   </div>
