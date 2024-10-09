@@ -59,7 +59,7 @@ export default function Home() {
             <a href="#projects">
             <p className="button navLeft animate__animated animate__fadeInLeft projects ">
               <span className="actual-text">&nbsp;projetos&nbsp;</span>
-              <span aria-hidden="true" className="hover-text">&nbsp;projetos&nbsp;</span>
+              <span aria-hidden="true" className="hover-text">&nbsp;projetoss&nbsp;</span>
             </p>
             </a>
             <a href="#contact">
